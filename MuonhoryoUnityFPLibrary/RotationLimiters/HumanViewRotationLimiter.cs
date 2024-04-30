@@ -27,20 +27,33 @@ namespace MuonhoryoLibrary.Unity.COM
         //    this.TopLimit = TopLimit;
         //}
 
-        [SerializeField] private float BottomLimit;
-        [SerializeField] private float TopLimit;
+        [SerializeField] private MonoBehaviour BottomLimitProvider;
+        [SerializeField] private MonoBehaviour TopLimitProvider;
 
-        public float BottomLimit_ => BottomLimit;
-        public float TopLimit_ => TopLimit;
+        private IConstProvider<float> ParsedBottomLimitProvider;
+        private IConstProvider<float> ParsedTopLimitProvider;
+        public float BottomLimit_ => ParsedBottomLimitProvider.GetValue();
+        public float TopLimit_ => ParsedTopLimitProvider.GetValue();
 
         public Vector3 GetLimitedRotation(Vector3 rotation)
         {
             float newX = rotation.x;
-            if (newX > BottomLimit && newX < TopLimit)
+            if (newX > BottomLimit_ && newX < TopLimit_)
             {
-                newX = newX < 180 ? BottomLimit : TopLimit;
+                newX = newX < 180 ? BottomLimit_ : TopLimit_;
             }
             return new Vector3(newX, rotation.y, rotation.z);
+        }
+
+        private void Awake()
+        {
+            ParsedBottomLimitProvider = BottomLimitProvider as IConstProvider<float>;
+            if (ParsedBottomLimitProvider == null)
+                throw new NullReferenceException("Missing BottomLimitProvider.");
+
+            ParsedTopLimitProvider = TopLimitProvider as IConstProvider<float>;
+            if (ParsedTopLimitProvider == null)
+                throw new NullReferenceException("Missing TopLimitProvider.");
         }
     }
 }

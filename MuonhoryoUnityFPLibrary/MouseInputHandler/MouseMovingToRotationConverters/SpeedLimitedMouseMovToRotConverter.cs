@@ -20,15 +20,24 @@ namespace MuonhoryoLibrary.Unity.COM
         //    this.SpeedLimits = SpeedLimits;
         //}
 
-        [SerializeField] private Vector2 SpeedLimits;
+        [SerializeField] private MonoBehaviour SpeedLimitsProvider;
 
-        public Vector2 SpeedLimits_ => SpeedLimits;
+        private IConstProvider<Vector2> ParsedSpeedLimitsProvider;
+
+        public Vector2 SpeedLimits_ => ParsedSpeedLimitsProvider.GetValue();
 
         public Vector2 GetRotation(Vector2 mouseMoving)
         {
             return new Vector2(
-                Mathf.Clamp(-mouseMoving.y,-SpeedLimits.y,SpeedLimits.y),
-                Mathf.Clamp(mouseMoving.x,-SpeedLimits.x,SpeedLimits.x));
+                Mathf.Clamp(-mouseMoving.y,-SpeedLimits_.y,SpeedLimits_.y),
+                Mathf.Clamp(mouseMoving.x,-SpeedLimits_.x,SpeedLimits_.x));
+        }
+
+        private void Awake()
+        {
+            ParsedSpeedLimitsProvider = SpeedLimitsProvider as IConstProvider<Vector2>;
+            if (ParsedSpeedLimitsProvider == null)
+                throw new System.NullReferenceException("Missing SpeedLimitsProvider.");
         }
     }
 }

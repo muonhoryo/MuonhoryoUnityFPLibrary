@@ -12,11 +12,13 @@ namespace MuonhoryoLibrary.Unity
 
         [SerializeField] private Transform Target;
 
-        [SerializeField] private Vector3 DefaultLocalOffset;
-        [SerializeField] private Vector3 DefaultGlobalOffset;
+        [SerializeField] private MonoBehaviour LocalOffsetProvider;
+        [SerializeField] private MonoBehaviour GlobalOffsetProvider;
 
-        public CompositeVector3 LocalOffset_ { get; private set; }
-        public CompositeVector3 GlobalOffset_ { get; private set; }
+        private IConstProvider<Vector3> ParsedLocalOffsetProvider;
+        private IConstProvider<Vector3> ParsedGlobalOffsetProvider;
+        public Vector3 LocalOffset_ => ParsedLocalOffsetProvider.GetValue();
+        public Vector3 GlobalOffset_ => ParsedGlobalOffsetProvider.GetValue();
 
         [SerializeField] private bool IsActive = false;
 
@@ -39,8 +41,13 @@ namespace MuonhoryoLibrary.Unity
 
         private void Awake()
         {
-            LocalOffset_ = new CompositeVector3(DefaultLocalOffset);
-            GlobalOffset_ = new CompositeVector3(DefaultGlobalOffset);
+            ParsedLocalOffsetProvider = LocalOffsetProvider as IConstProvider<Vector3>;
+            if (ParsedLocalOffsetProvider == null)
+                throw new NullReferenceException("Missing LocalOffsetProvider.");
+
+            ParsedGlobalOffsetProvider = GlobalOffsetProvider as IConstProvider<Vector3>;
+            if (ParsedGlobalOffsetProvider == null)
+                throw new NullReferenceException("Missing GlobalOffsetProvider.");
 
             if (IsActive && Target != null)
                 IsActive_ = true;
@@ -53,9 +60,9 @@ namespace MuonhoryoLibrary.Unity
             if (Target == null)
                 IsActive_ = false;
 
-            Vector3 offset = (Vector3)LocalOffset_;
+            Vector3 offset = LocalOffset_;
 
-            transform.position = Target.position + (Vector3)GlobalOffset_ +
+            transform.position = Target.position + GlobalOffset_ +
                 transform.right * offset.x +
                 transform.up * offset.y +
                 transform.forward * offset.z;

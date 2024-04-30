@@ -13,18 +13,19 @@ namespace MuonhoryoLibrary.Unity.COM
         public event Action DeactivateModuleEvent = delegate { };
 
         [SerializeField] private MonoBehaviour MovingDirectionCalculator;
+        [SerializeField] private MonoBehaviour AddingForceModifierProvider;
+        [SerializeField] private MonoBehaviour DefaultSpeedProvider;
 
         private IMovingDirectionCalculator ParsedMovDirCalculator;
+        private IConstProvider<float> ParsedAddingForceModifierProvider;
+        private IConstProvider<float> ParsedDefaultSpeedProvider;
 
         [SerializeField] private Rigidbody TargetRigidbody;
 
         private bool IsActive = false;
         private Vector2 MovingDirection = Vector3.zero;
 
-        [SerializeField] private float AddingForceModifier = 1;
-        [SerializeField] private float DefaultSpeed;
-
-        public CompositeFloat Speed_ { get; private set; }
+        public float Speed_ => ParsedDefaultSpeedProvider.GetValue();
 
         public bool IsMoving_ => IsActive_;
 
@@ -101,14 +102,20 @@ namespace MuonhoryoLibrary.Unity.COM
                         ("Cant't parse MovingDirectionCalculator to IMovingDirectionCalculator.");
             }
 
-            Speed_ = new CompositeFloat(DefaultSpeed);
+            ParsedAddingForceModifierProvider = AddingForceModifierProvider as IConstProvider<float>;
+            if (ParsedAddingForceModifierProvider == null)
+                throw new NullReferenceException("Missing AddingForceModifierProvider.");
+
+            ParsedDefaultSpeedProvider= DefaultSpeedProvider as IConstProvider<float>;
+            if (ParsedDefaultSpeedProvider == null)
+                throw new NullReferenceException("Missing DefaultSpeedProvider.");
 
             if (!IsActive)
                 enabled = false;
         }
         private void FixedUpdate()
         {
-            TargetRigidbody.AddForce(RealMovingDirection_ * (float)Speed_ * AddingForceModifier, ForceMode.Force);
+            TargetRigidbody.AddForce(RealMovingDirection_ * (float)Speed_ * ParsedAddingForceModifierProvider.GetValue(), ForceMode.Force);
             if (TargetRigidbody.velocity.magnitude > (float)Speed_)
                 TargetRigidbody.velocity = TargetRigidbody.velocity.normalized * (float)Speed_;
         }

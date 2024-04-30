@@ -14,33 +14,29 @@ namespace MuonhoryoLibrary.Unity.COM
             BothInverse = 3
         }
 
-        public event Action<InversionMode> ChangeInversionModeEvent = delegate { };
-
         [SerializeField] private MonoBehaviour Converter;
-        [SerializeField] private InversionMode inversionMode;
+        [SerializeField] private MonoBehaviour InversionModeProvider;
 
         private IMouseMovingToRotationConverter ParsedConverter;
-        public InversionMode inversionMode_
-        {
-            get => inversionMode;
-            set
-            {
-                inversionMode = value;
-                ChangeInversionModeEvent(inversionMode);
-            }
-        }
+        private IConstProvider<InversionMode> ParsedInversionModeProvider;
+
+        public InversionMode InversionMode_ => ParsedInversionModeProvider.GetValue();
         private void Awake()
         {
             ParsedConverter = Converter as IMouseMovingToRotationConverter;
             if (ParsedConverter == null)
                 throw new NullReferenceException("Missing mousemoving-to-rotation converter.");
+
+            ParsedInversionModeProvider = InversionModeProvider as IConstProvider<InversionMode>;
+            if (ParsedInversionModeProvider == null)
+                throw new NullReferenceException("Missing InversionModeProvider.");
         }
 
         public Vector2 GetRotation(Vector2 input)
         {
             Vector2 newInput = new Vector2(
-                (inversionMode & InversionMode.Horizontal) != 0 ? -input.x : input.x,
-                (inversionMode & InversionMode.Vertical) != 0 ? -input.y : input.y);
+                (InversionMode_ & InversionMode.Horizontal) != 0 ? -input.x : input.x,
+                (InversionMode_ & InversionMode.Vertical) != 0 ? -input.y : input.y);
             return ParsedConverter.GetRotation(newInput);
         }
 

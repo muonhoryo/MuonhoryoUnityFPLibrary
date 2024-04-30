@@ -9,37 +9,29 @@ namespace MuonhoryoLibrary.Unity.COM
 {
     public sealed class MouseInputSensitiveMultiplier : MonoBehaviour, IMouseMovingToRotationConverter
     {
-        public event Action<Vector2> ChangeSensitiveEvent = delegate { };
-
         [SerializeField] private MonoBehaviour Converter;
+        [SerializeField] private MonoBehaviour SensitiveProvider;
 
         private IMouseMovingToRotationConverter ParsedConverter;
+        private IConstProvider<Vector2> ParsedSensitiveProvider;
 
-        private const float MaxSensitive = 1000;
-        [SerializeField][Range(0, MaxSensitive)] private float Sensitive_X;
-        [SerializeField][Range(0, MaxSensitive)] private float Sensitive_Y;
+        public Vector2 Sensitive_ => ParsedSensitiveProvider.GetValue();
 
         private void Awake()
         {
             ParsedConverter = Converter as IMouseMovingToRotationConverter;
             if (ParsedConverter == null)
                 throw new NullReferenceException("Missing mouseinput-to-rotation converter.");
+
+            ParsedSensitiveProvider = SensitiveProvider as IConstProvider<Vector2>;
+            if (ParsedSensitiveProvider == null)
+                throw new NullReferenceException("Missing SensitiveProvider.");
         }
 
         public Vector2 GetRotation(Vector2 mouseInput)
         {
-            Vector2 input = new Vector2(mouseInput.x * Sensitive_X, mouseInput.y * Sensitive_Y);
+            Vector2 input = new Vector2(mouseInput.x * Sensitive_.x, mouseInput.y * Sensitive_.y);
             return ParsedConverter.GetRotation(input);
-        }
-
-        public void SetSensitive(Vector2 Sensitive)
-        {
-            Vector2 sens = new Vector2(
-                Mathf.Clamp(Sensitive.x, 0, MaxSensitive),
-                Mathf.Clamp(Sensitive.y, 0, MaxSensitive));
-            Sensitive_X = sens.x;
-            Sensitive_Y = sens.y;
-            ChangeSensitiveEvent(sens);
         }
     }
 }

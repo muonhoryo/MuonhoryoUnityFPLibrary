@@ -12,19 +12,16 @@ namespace MuonhoryoLibrary.Unity.COM
         public event Action DeactivateModuleEvent = delegate { };
 
         [SerializeField] private MonoBehaviour RotationLimiter;
+        [SerializeField] private MonoBehaviour RotationOffsetProvider;
 
         private IRotationLimiter ParsedRotationLimiter;
+        private IConstProvider<Vector3> ParsedRotationOffsetProvider;
 
         [SerializeField] private bool IsActive = false;
         private Vector3 CurrentRotation;
         [SerializeField] private Transform ViewObject;
 
-        [SerializeField] private Vector3 DefaultRotationOffset;
-
-        private CompositeVector3 RotationOffset;
-
-
-        public CompositeVector3 RotationOffset_ => RotationOffset;
+        public Vector3 RotationOffset_ => ParsedRotationOffsetProvider.GetValue();
         public IRotationLimiter RotationLimiter_ => ParsedRotationLimiter;
         public bool IsActive_
         {
@@ -75,7 +72,9 @@ namespace MuonhoryoLibrary.Unity.COM
             if (ParsedRotationLimiter == null)
                 throw new ArgumentNullException("Missing RotationLimiter.");
 
-            RotationOffset = new CompositeVector3(DefaultRotationOffset);
+            ParsedRotationOffsetProvider = RotationOffsetProvider as IConstProvider<Vector3>;
+            if (ParsedRotationOffsetProvider == null)
+                throw new ArgumentNullException("Missing RotationOffsetProvider.");
 
             if (!IsActive)
                 enabled = false;
@@ -83,7 +82,7 @@ namespace MuonhoryoLibrary.Unity.COM
         }
         private void LateUpdate()
         {
-            ViewObject.eulerAngles = CurrentRotation_ + (Vector3)RotationOffset;
+            ViewObject.eulerAngles = CurrentRotation_ + RotationOffset_;
         }
 
         //
