@@ -1,0 +1,46 @@
+﻿using MuonhoryoLibrary.Unity.COM;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using UnityEngine;
+
+namespace MuonhoryoLibrary.Unity.COM
+{
+    /// <summary>
+    /// Doesn't allow to camera rotate too higher and too lower by vertical axis.
+    /// </summary>
+    public class HumanViewRotationLimiter :MonoBehaviour, IRotationLimiter
+    {
+        //private HumanViewRotationLimiter() { }
+        //public HumanViewRotationLimiter(float BottomLimit, float TopLimit)
+        //{
+        //    if (BottomLimit < 0 || BottomLimit > 360)
+        //        throw new ArgumentOutOfRangeException("BottomLimit must be in degrees in [0;360] diapasone.");
+        //    if (TopLimit < 0 || TopLimit > 360)
+        //        throw new ArgumentOutOfRangeException("TopLimit must be in degrees in [0;360] diapasone.");
+        //    if (TopLimit <= BottomLimit)
+        //        throw new ArgumentException("TopLimit must be more than BottomLimit.");
+
+        //    this.BottomLimit = BottomLimit;
+        //    this.TopLimit = TopLimit;
+        //}
+
+        [SerializeField] private float BottomLimit;
+        [SerializeField] private float TopLimit;
+
+        public float BottomLimit_ => BottomLimit;
+        public float TopLimit_ => TopLimit;
+
+        public Vector3 GetLimitedRotation(Vector3 rotation)
+        {
+            float newX = rotation.x;
+            if (newX > BottomLimit && newX < TopLimit)
+            {
+                newX = newX < 180 ? BottomLimit : TopLimit;
+            }
+            return new Vector3(newX, rotation.y, rotation.z);
+        }
+    }
+}
