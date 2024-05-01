@@ -45,6 +45,8 @@ namespace MuonhoryoLibrary.Unity
         {
             if (IsActive_)
                 enabled = true;
+            else
+                ParsedMovingModule.StopMoving();
         }
         private void Awake()
         {

@@ -41,9 +41,9 @@ namespace MuonhoryoLibrary.Unity.COM
                 IsActive = value;
                 enabled = value;
                 if (IsActive)
-                    ActivateModuleEvent.Invoke();
+                    ActivateModuleEvent();
                 else
-                    DeactivateModuleEvent.Invoke();
+                    DeactivateModuleEvent();
             }
         }
         bool IActiveModule.IsActive { get => IsActive_; set => IsActive_ = value; }
@@ -73,8 +73,6 @@ namespace MuonhoryoLibrary.Unity.COM
         private void StopMovingAction()
         {
             IsActive_ = false;
-            Rigidbody_.velocity = new Vector3(0, Rigidbody_.velocity.y, 0);
-            StopMovingEvent();
         }
 
         //Unity API
@@ -83,6 +81,11 @@ namespace MuonhoryoLibrary.Unity.COM
         {
             if (IsActive)
                 enabled = true;
+            else
+            {
+                Rigidbody_.velocity = new Vector3(0, Rigidbody_.velocity.y, 0);
+                StopMovingEvent();
+            }
         }
         private void OnEnable()
         {
