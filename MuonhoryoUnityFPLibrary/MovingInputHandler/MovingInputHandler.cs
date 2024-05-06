@@ -17,8 +17,9 @@ namespace MuonhoryoLibrary.Unity
 
         [SerializeField] private string InputName_TowardsAxis;
         [SerializeField] private string InputName_SideAxis;
+        [SerializeField] private bool IsActiveOnAwake = false;
 
-        [SerializeField] private bool IsActive = false;
+        private bool IsActive = false;
         public bool IsActive_
         {
             get => IsActive;
@@ -58,6 +59,14 @@ namespace MuonhoryoLibrary.Unity
             ParsedMovingModule = MovingModule as IMovingModule;
             if (ParsedMovingModule == null)
                 throw new NullReferenceException("Missing MovingModule.");
+
+            if (!IsActiveOnAwake)
+                enabled = false;
+        }
+        private void Start()
+        {
+            if (IsActive != enabled)
+                IsActive_ = true;
         }
         private void LateUpdate()
         {

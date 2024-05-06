@@ -17,9 +17,10 @@ namespace MuonhoryoLibrary.Unity.COM
         private IRotationLimiter ParsedRotationLimiter;
         private IConstProvider<Vector3> ParsedRotationOffsetProvider;
 
-        [SerializeField] private bool IsActive = false;
+        private bool IsActive = false;
         private Vector3 CurrentRotation;
         [SerializeField] private Transform ViewObject;
+        [SerializeField] private bool IsActiveOnAwake = false;
 
         public Vector3 RotationOffset_ => ParsedRotationOffsetProvider.GetValue();
         public IRotationLimiter RotationLimiter_ => ParsedRotationLimiter;
@@ -42,7 +43,7 @@ namespace MuonhoryoLibrary.Unity.COM
         public Vector3 CurrentRotation_
         {
             get => CurrentRotation;
-            protected set
+            private set
             {
                 CurrentRotation = value;
                 ChangeViewRotationEvent(CurrentRotation_, CurrentRotation_.y);
@@ -76,9 +77,14 @@ namespace MuonhoryoLibrary.Unity.COM
             if (ParsedRotationOffsetProvider == null)
                 throw new ArgumentNullException("Missing RotationOffsetProvider.");
 
-            if (!IsActive)
+            if (!IsActiveOnAwake)
                 enabled = false;
             CurrentRotation_ = ViewObject.eulerAngles;
+        }
+        private void Start()
+        {
+            if (IsActive != enabled)
+                IsActive_ = true;
         }
         private void LateUpdate()
         {

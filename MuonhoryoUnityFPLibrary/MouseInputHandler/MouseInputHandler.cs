@@ -18,8 +18,9 @@ namespace MuonhoryoLibrary.Unity
 
         [SerializeField] private string InputName_VerticalAxis;
         [SerializeField] private string InputName_HorizontalAxis;
+        [SerializeField] private bool IsActiveOnAwake = false;
 
-        [SerializeField] private bool IsActive = false;
+         private bool IsActive = false;
         public bool IsActive_
         {
             get => IsActive;
@@ -61,7 +62,13 @@ namespace MuonhoryoLibrary.Unity
             if (string.IsNullOrEmpty(InputName_VerticalAxis))
                 throw new NullReferenceException("Missing InputName - Vertical axis.");
 
-            enabled = IsActive;
+            if (!IsActiveOnAwake)
+                enabled = false;
+        }
+        private void Start()
+        {
+            if (IsActive != enabled)
+                IsActive_ = true;
         }
         private void LateUpdate()
         {

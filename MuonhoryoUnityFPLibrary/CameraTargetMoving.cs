@@ -11,6 +11,7 @@ namespace MuonhoryoLibrary.Unity
         public event Action DeactivateModuleEvent = delegate { };
 
         [SerializeField] private Transform Target;
+        [SerializeField] private bool IsActiveOnAwake = false;
 
         [SerializeField] private MonoBehaviour LocalOffsetProvider;
         [SerializeField] private MonoBehaviour GlobalOffsetProvider;
@@ -20,7 +21,7 @@ namespace MuonhoryoLibrary.Unity
         public Vector3 LocalOffset_ => ParsedLocalOffsetProvider.GetValue();
         public Vector3 GlobalOffset_ => ParsedGlobalOffsetProvider.GetValue();
 
-        [SerializeField] private bool IsActive = false;
+         private bool IsActive = false;
 
         public bool IsActive_
         {
@@ -49,10 +50,13 @@ namespace MuonhoryoLibrary.Unity
             if (ParsedGlobalOffsetProvider == null)
                 throw new NullReferenceException("Missing GlobalOffsetProvider.");
 
-            if (IsActive && Target != null)
+            if (!IsActiveOnAwake || Target == null)
+                enabled = false;
+        }
+        private void Start()
+        {
+            if (enabled != IsActive)
                 IsActive_ = true;
-            else
-                IsActive_ = false;
         }
 
         private void LateUpdate()
