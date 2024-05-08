@@ -1,0 +1,122 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "D:\\create\\c#\\MuonhoryoLibrary\\MuonhoryoUnityFRLibrary\\MuonhoryoUnityFPLibrary\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{CEEE8EAD-5442-4BC2-A4FE-386F7DB6E640}|MuonhoryoUnityFPLibrary.csproj|d:\\create\\c#\\muonhoryolibrary\\muonhoryounityfrlibrary\\muonhoryounityfplibrary\\properties\\assemblyinfo.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{CEEE8EAD-5442-4BC2-A4FE-386F7DB6E640}|MuonhoryoUnityFPLibrary.csproj|solutionrelative:properties\\assemblyinfo.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{CEEE8EAD-5442-4BC2-A4FE-386F7DB6E640}|MuonhoryoUnityFPLibrary.csproj|d:\\create\\c#\\muonhoryolibrary\\muonhoryounityfrlibrary\\muonhoryounityfplibrary\\camerarotationmodules\\camerasimplerotationmodule.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{CEEE8EAD-5442-4BC2-A4FE-386F7DB6E640}|MuonhoryoUnityFPLibrary.csproj|solutionrelative:camerarotationmodules\\camerasimplerotationmodule.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{CEEE8EAD-5442-4BC2-A4FE-386F7DB6E640}|MuonhoryoUnityFPLibrary.csproj|d:\\create\\c#\\muonhoryolibrary\\muonhoryounityfrlibrary\\muonhoryounityfplibrary\\cameratargetmoving.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{CEEE8EAD-5442-4BC2-A4FE-386F7DB6E640}|MuonhoryoUnityFPLibrary.csproj|solutionrelative:cameratargetmoving.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{CEEE8EAD-5442-4BC2-A4FE-386F7DB6E640}|MuonhoryoUnityFPLibrary.csproj|D:\\create\\c#\\MuonhoryoLibrary\\MuonhoryoUnityFRLibrary\\MuonhoryoUnityFPLibrary\\movinginputhandler\\movingmodules\\groundmovingmodule.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{CEEE8EAD-5442-4BC2-A4FE-386F7DB6E640}|MuonhoryoUnityFPLibrary.csproj|solutionrelative:movinginputhandler\\movingmodules\\groundmovingmodule.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{CEEE8EAD-5442-4BC2-A4FE-386F7DB6E640}|MuonhoryoUnityFPLibrary.csproj|D:\\create\\c#\\MuonhoryoLibrary\\MuonhoryoUnityFRLibrary\\MuonhoryoUnityFPLibrary\\movinginputhandler\\movinginputhandler.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{CEEE8EAD-5442-4BC2-A4FE-386F7DB6E640}|MuonhoryoUnityFPLibrary.csproj|solutionrelative:movinginputhandler\\movinginputhandler.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{CEEE8EAD-5442-4BC2-A4FE-386F7DB6E640}|MuonhoryoUnityFPLibrary.csproj|d:\\create\\c#\\muonhoryolibrary\\muonhoryounityfrlibrary\\muonhoryounityfplibrary\\mouseinputhandler\\mouseinputhandler.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{CEEE8EAD-5442-4BC2-A4FE-386F7DB6E640}|MuonhoryoUnityFPLibrary.csproj|solutionrelative:mouseinputhandler\\mouseinputhandler.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 5,
+          "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "MouseInputHandler.cs",
+              "DocumentMoniker": "D:\\create\\c#\\MuonhoryoLibrary\\MuonhoryoUnityFRLibrary\\MuonhoryoUnityFPLibrary\\MouseInputHandler\\MouseInputHandler.cs",
+              "RelativeDocumentMoniker": "MouseInputHandler\\MouseInputHandler.cs",
+              "ToolTip": "D:\\create\\c#\\MuonhoryoLibrary\\MuonhoryoUnityFRLibrary\\MuonhoryoUnityFPLibrary\\MouseInputHandler\\MouseInputHandler.cs",
+              "RelativeToolTip": "MouseInputHandler\\MouseInputHandler.cs",
+              "ViewState": "AQIAADgAAAAAAAAAAAAgwEkAAAAlAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-05-08T12:59:34.031Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "CameraSimpleRotationModule.cs",
+              "DocumentMoniker": "D:\\create\\c#\\MuonhoryoLibrary\\MuonhoryoUnityFRLibrary\\MuonhoryoUnityFPLibrary\\CameraRotationModules\\CameraSimpleRotationModule.cs",
+              "RelativeDocumentMoniker": "CameraRotationModules\\CameraSimpleRotationModule.cs",
+              "ToolTip": "D:\\create\\c#\\MuonhoryoLibrary\\MuonhoryoUnityFRLibrary\\MuonhoryoUnityFPLibrary\\CameraRotationModules\\CameraSimpleRotationModule.cs",
+              "RelativeToolTip": "CameraRotationModules\\CameraSimpleRotationModule.cs",
+              "ViewState": "AQIAAEcAAAAAAAAAAAAswFkAAAAlAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-05-08T12:57:55.904Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "CameraTargetMoving.cs",
+              "DocumentMoniker": "D:\\create\\c#\\MuonhoryoLibrary\\MuonhoryoUnityFRLibrary\\MuonhoryoUnityFPLibrary\\CameraTargetMoving.cs",
+              "RelativeDocumentMoniker": "CameraTargetMoving.cs",
+              "ToolTip": "D:\\create\\c#\\MuonhoryoLibrary\\MuonhoryoUnityFRLibrary\\MuonhoryoUnityFPLibrary\\CameraTargetMoving.cs",
+              "RelativeToolTip": "CameraTargetMoving.cs",
+              "ViewState": "AQIAACsAAAAAAAAAAAA5wEcAAAAlAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-05-08T12:34:01.465Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "GroundMovingModule.cs",
+              "DocumentMoniker": "D:\\create\\c#\\MuonhoryoLibrary\\MuonhoryoUnityFRLibrary\\MuonhoryoUnityFPLibrary\\MovingInputHandler\\MovingModules\\GroundMovingModule.cs",
+              "RelativeDocumentMoniker": "MovingInputHandler\\MovingModules\\GroundMovingModule.cs",
+              "ToolTip": "D:\\create\\c#\\MuonhoryoLibrary\\MuonhoryoUnityFRLibrary\\MuonhoryoUnityFPLibrary\\MovingInputHandler\\MovingModules\\GroundMovingModule.cs",
+              "RelativeToolTip": "MovingInputHandler\\MovingModules\\GroundMovingModule.cs",
+              "ViewState": "AQIAAGAAAAAAAAAAAAAAAHMAAAAZAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-05-08T12:33:55.609Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "MovingInputHandler.cs",
+              "DocumentMoniker": "D:\\create\\c#\\MuonhoryoLibrary\\MuonhoryoUnityFRLibrary\\MuonhoryoUnityFPLibrary\\MovingInputHandler\\MovingInputHandler.cs",
+              "RelativeDocumentMoniker": "MovingInputHandler\\MovingInputHandler.cs",
+              "ToolTip": "D:\\create\\c#\\MuonhoryoLibrary\\MuonhoryoUnityFRLibrary\\MuonhoryoUnityFPLibrary\\MovingInputHandler\\MovingInputHandler.cs",
+              "RelativeToolTip": "MovingInputHandler\\MovingInputHandler.cs",
+              "ViewState": "AQIAAEMAAAAAAAAAAAAkwEsAAAAJAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-05-08T12:33:55.646Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "AssemblyInfo.cs",
+              "DocumentMoniker": "D:\\create\\c#\\MuonhoryoLibrary\\MuonhoryoUnityFRLibrary\\MuonhoryoUnityFPLibrary\\Properties\\AssemblyInfo.cs",
+              "RelativeDocumentMoniker": "Properties\\AssemblyInfo.cs",
+              "ToolTip": "D:\\create\\c#\\MuonhoryoLibrary\\MuonhoryoUnityFRLibrary\\MuonhoryoUnityFPLibrary\\Properties\\AssemblyInfo.cs",
+              "RelativeToolTip": "Properties\\AssemblyInfo.cs",
+              "ViewState": "AQIAAAkAAAAAAAAAAAAAACMAAAAlAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-05-08T12:33:55.719Z",
+              "EditorCaption": ""
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

@@ -53,6 +53,7 @@
     <Compile Include="CameraRotationModules\CameraRotationModulesSelector.cs" />
     <Compile Include="CameraRotationModules\CameraSimpleRotationModule.cs" />
     <Compile Include="CameraTargetMoving.cs" />
+    <Compile Include="Extensions.cs" />
     <Compile Include="Interfaces\Moving\IMovingDirectionCalculator.cs" />
     <Compile Include="Interfaces\ViewRotation\ICameraViewRotationModule.cs" />
     <Compile Include="Interfaces\ViewRotation\IMouseMovingToRotationConverter.cs" />

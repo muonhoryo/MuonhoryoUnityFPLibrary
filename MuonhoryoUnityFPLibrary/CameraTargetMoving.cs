@@ -21,7 +21,8 @@ namespace MuonhoryoLibrary.Unity
         public Vector3 LocalOffset_ => ParsedLocalOffsetProvider.GetValue();
         public Vector3 GlobalOffset_ => ParsedGlobalOffsetProvider.GetValue();
 
-         private bool IsActive = false;
+        private bool IsActive = false;
+        private bool IsInitialized = false;
 
         public bool IsActive_
         {
@@ -40,6 +41,22 @@ namespace MuonhoryoLibrary.Unity
             }
         }
 
+        private void OnEnable()
+        {
+            if (!IsInitialized)
+            {
+                IsInitialized = true;
+                IsActive_ = true;
+            }
+
+            if (!IsActive_)
+                enabled = false;
+        }
+        private void OnDisable()
+        {
+            if (IsActive_)
+                enabled = true;
+        }
         private void Awake()
         {
             ParsedLocalOffsetProvider = LocalOffsetProvider as IConstProvider<Vector3>;
@@ -51,12 +68,10 @@ namespace MuonhoryoLibrary.Unity
                 throw new NullReferenceException("Missing GlobalOffsetProvider.");
 
             if (!IsActiveOnAwake || Target == null)
+            {
+                IsInitialized = true;
                 enabled = false;
-        }
-        private void Start()
-        {
-            if (enabled != IsActive)
-                IsActive_ = true;
+            }
         }
 
         private void LateUpdate()

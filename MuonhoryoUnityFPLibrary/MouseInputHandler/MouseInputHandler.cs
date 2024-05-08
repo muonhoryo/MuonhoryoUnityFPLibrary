@@ -21,6 +21,7 @@ namespace MuonhoryoLibrary.Unity
         [SerializeField] private bool IsActiveOnAwake = false;
 
          private bool IsActive = false;
+        private bool IsInitialized = false;
         public bool IsActive_
         {
             get => IsActive;
@@ -40,6 +41,12 @@ namespace MuonhoryoLibrary.Unity
 
         private void OnEnable()
         {
+            if (!IsInitialized)
+            {
+                IsInitialized = true;
+                IsActive_ = true;
+            }
+
             if (!IsActive)
                 enabled = false;
         }
@@ -63,12 +70,10 @@ namespace MuonhoryoLibrary.Unity
                 throw new NullReferenceException("Missing InputName - Vertical axis.");
 
             if (!IsActiveOnAwake)
+            {
+                IsInitialized = true;
                 enabled = false;
-        }
-        private void Start()
-        {
-            if (IsActive != enabled)
-                IsActive_ = true;
+            }
         }
         private void LateUpdate()
         {

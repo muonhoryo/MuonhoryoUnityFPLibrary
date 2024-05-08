@@ -11,6 +11,9 @@ namespace MuonhoryoLibrary.Unity.COM
         public event Action ActivateModuleEvent = delegate { };
         public event Action DeactivateModuleEvent = delegate { };
 
+        [SerializeField] private Transform ViewObject;
+        [SerializeField] private bool IsActiveOnAwake = false;
+
         [SerializeField] private MonoBehaviour RotationLimiter;
         [SerializeField] private MonoBehaviour RotationOffsetProvider;
 
@@ -18,9 +21,8 @@ namespace MuonhoryoLibrary.Unity.COM
         private IConstProvider<Vector3> ParsedRotationOffsetProvider;
 
         private bool IsActive = false;
+        private bool IsInitialized = false;
         private Vector3 CurrentRotation;
-        [SerializeField] private Transform ViewObject;
-        [SerializeField] private bool IsActiveOnAwake = false;
 
         public Vector3 RotationOffset_ => ParsedRotationOffsetProvider.GetValue();
         public IRotationLimiter RotationLimiter_ => ParsedRotationLimiter;
@@ -56,6 +58,12 @@ namespace MuonhoryoLibrary.Unity.COM
 
         private void OnDisable()
         {
+            if (!IsInitialized)
+            {
+                IsInitialized = true;
+                IsActive_ = true;
+            }
+
             if (IsActive)
                 enabled = true;
         }
@@ -78,13 +86,11 @@ namespace MuonhoryoLibrary.Unity.COM
                 throw new ArgumentNullException("Missing RotationOffsetProvider.");
 
             if (!IsActiveOnAwake)
+            {
+                IsInitialized = true;
                 enabled = false;
+            }
             CurrentRotation_ = ViewObject.eulerAngles;
-        }
-        private void Start()
-        {
-            if (IsActive != enabled)
-                IsActive_ = true;
         }
         private void LateUpdate()
         {
